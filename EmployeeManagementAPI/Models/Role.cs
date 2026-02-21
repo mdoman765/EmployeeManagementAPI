@@ -1,6 +1,10 @@
-﻿namespace EmployeeManagementAPI.Models
+﻿namespace EmployeeManagementAPI.Models;
+
+public class Role
 {
-    public class Role
-    {
-    }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public DateTime AddedDate { get; set; } = DateTime.UtcNow;
+    public DateTime? UpdatedDate { get; set; }
+    public ICollection<User> Users { get; set; } = new List<User>();
 }

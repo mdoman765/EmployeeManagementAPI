@@ -1,6 +1,8 @@
-﻿]namespace EmployeeManagementAPI.Services.Interfaces
+﻿using EmployeeManagementAPI.DTOs.Auth;
+
+namespace EmployeeManagementAPI.Services.Interfaces;
+
+public interface IAuthService
 {
-    public interface IAuthService
-    {
-    }
+    Task<LoginResponseDto?> LoginAsync(LoginDto dto);
 }

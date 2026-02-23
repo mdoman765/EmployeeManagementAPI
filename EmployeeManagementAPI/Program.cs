@@ -23,17 +23,19 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Repositories
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-//builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-//builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-//builder.Services.AddScoped<ISalaryRepository, SalaryRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+builder.Services.AddScoped<ISalaryRepository, SalaryRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 // Services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-//builder.Services.AddScoped<IDepartmentService, DepartmentService>();
-//builder.Services.AddScoped<IAttendanceService, AttendanceService>();
-//builder.Services.AddScoped<ISalaryService, SalaryService>();
-
+builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<ISalaryService, SalaryService>();
+builder.Services.AddScoped<IUserService, UserService>();
 // JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!);

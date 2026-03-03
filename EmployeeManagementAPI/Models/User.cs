@@ -13,4 +13,5 @@ public class User
     public DateTime? LastLoginDate { get; set; }
     public bool IsActive { get; set; } = true;
     public Role Role { get; set; } = null!;
+    public int EmployeeId { get; set; }
 }

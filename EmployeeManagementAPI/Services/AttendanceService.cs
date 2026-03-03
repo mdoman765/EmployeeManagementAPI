@@ -16,8 +16,8 @@ public class AttendanceService : IAttendanceService
     public async Task<IEnumerable<AttendanceDto>> GetAllAsync()
         => _map.Map<IEnumerable<AttendanceDto>>(await _repo.GetAllAsync());
 
-    public async Task<IEnumerable<AttendanceDto>> GetByEmployeeAsync(int employeeId)
-        => _map.Map<IEnumerable<AttendanceDto>>(await _repo.GetByEmployeeAsync(employeeId));
+    public async Task<IEnumerable<AttendanceDto>> GetByEmployeeAsync(int userId)
+        => _map.Map<IEnumerable<AttendanceDto>>(await _repo.GetByEmployeeAsync(userId));
 
     public async Task<AttendanceDto?> GetByIdAsync(int id)
     {

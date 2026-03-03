@@ -13,11 +13,19 @@ public class AttendanceRepository : IAttendanceRepository
     public async Task<IEnumerable<Attendance>> GetAllAsync()
         => await _ctx.Attendances.Include(a => a.Employee)
             .Where(a => !a.IsDeleted).OrderByDescending(a => a.CheckInTime).ToListAsync();
+ 
+    public async Task<IEnumerable<Attendance>> GetByEmployeeAsync(int userId)
+    {
+        var employeeId = await _ctx.Users
+            .Where(u => u.Id == userId)
+            .Select(u => u.EmployeeId)
+            .FirstOrDefaultAsync();
 
-    public async Task<IEnumerable<Attendance>> GetByEmployeeAsync(int employeeId)
-        => await _ctx.Attendances.Include(a => a.Employee)
+        return await _ctx.Attendances
             .Where(a => a.EmployeeId == employeeId && !a.IsDeleted)
-            .OrderByDescending(a => a.CheckInTime).ToListAsync();
+            .OrderByDescending(a => a.CheckInTime)
+            .ToListAsync();
+    }
 
     public async Task<Attendance?> GetByIdAsync(int id)
         => await _ctx.Attendances.Include(a => a.Employee)

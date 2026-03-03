@@ -5,6 +5,6 @@ namespace EmployeeManagementAPI.Services.Interfaces;
 public interface ISalaryService
 {
     Task<IEnumerable<SalaryDto>> GetAllAsync();
-    Task<IEnumerable<SalaryDto>> GetByEmployeeAsync(int employeeId);
+    Task<IEnumerable<SalaryDto>> GetByEmployeeAsync(int userId);
     Task<SalaryDto> CreateAsync(CreateSalaryDto dto, int createdBy);
 }

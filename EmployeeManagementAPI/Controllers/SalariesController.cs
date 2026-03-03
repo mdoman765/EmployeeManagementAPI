@@ -22,8 +22,8 @@ public class SalariesController : ControllerBase
 
     /// <summary>GET api/salaries/employee/{employeeId} - Get salaries for a specific employee</summary>
     [HttpGet("employee/{employeeId}")]
-    public async Task<IActionResult> GetByEmployee(int employeeId)
-        => Ok(ApiResponse<IEnumerable<SalaryDto>>.Ok(await _svc.GetByEmployeeAsync(employeeId)));
+    public async Task<IActionResult> GetByEmployee(int userid)
+        => Ok(ApiResponse<IEnumerable<SalaryDto>>.Ok(await _svc.GetByEmployeeAsync(userid)));
 
     /// <summary>POST api/salaries - Add salary record (Admin only). Automatically closes previous salary.</summary>
     [HttpPost]

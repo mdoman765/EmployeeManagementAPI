@@ -14,10 +14,19 @@ public class SalaryRepository : ISalaryRepository
         => await _ctx.Salaries.Include(s => s.Employee)
             .OrderByDescending(s => s.CreatedAt).ToListAsync();
 
-    public async Task<IEnumerable<Salary>> GetByEmployeeAsync(int employeeId)
-        => await _ctx.Salaries.Include(s => s.Employee)
+  
+    public async Task<IEnumerable<Salary>> GetByEmployeeAsync(int userId)
+    {
+        var employeeId = await _ctx.Users
+            .Where(u => u.Id == userId)
+            .Select(u => u.EmployeeId)
+            .FirstOrDefaultAsync();
+
+        return await _ctx.Salaries
             .Where(s => s.EmployeeId == employeeId)
-            .OrderByDescending(s => s.EffectiveFrom).ToListAsync();
+            .OrderByDescending(s => s.EffectiveFrom)
+            .ToListAsync();
+    }
 
     public async Task<Salary?> GetByIdAsync(int id)
         => await _ctx.Salaries.Include(s => s.Employee).FirstOrDefaultAsync(s => s.Id == id);

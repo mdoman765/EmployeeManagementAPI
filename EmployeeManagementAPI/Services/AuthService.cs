@@ -24,6 +24,7 @@ public class AuthService : IAuthService
     {
         var user = await _context.Users
             .Include(u => u.Role)
+            .Include(u=>u.Employee)
             .FirstOrDefaultAsync(u => u.Username == dto.Username && u.IsActive);
 
         if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
@@ -41,7 +42,10 @@ public class AuthService : IAuthService
             Username = user.Username,
             Email = user.Email,
             Role = user.Role.Name,
-            UserId = user.Id
+            UserId = user.Id,
+            Phone=user.Employee.Phone,
+            FullName = user.Employee.Name,
+
         };
     }
 

@@ -14,4 +14,5 @@ public class User
     public bool IsActive { get; set; } = true;
     public Role Role { get; set; } = null!;
     public int EmployeeId { get; set; }
+    public Employee Employee { get; set; } = null!;
 }

@@ -10,6 +10,11 @@ public class UserDto
     public bool IsActive { get; set; }
     public DateTime AddedDate { get; set; }
     public DateTime? LastLoginDate { get; set; }
+
+    // Employee fields
+    public int? EmployeeId { get; set; }
+    public string? Name { get; set; }
+    public string? Phone { get; set; }
 }
 
 public class CreateUserDto
